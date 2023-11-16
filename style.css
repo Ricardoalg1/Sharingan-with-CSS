@@ -1,0 +1,216 @@
+:root {
+  --RotationTimeExterno: 1s;
+  --RotationTimeInterno: calc(var(--RotationTimeExterno) / 2);
+  --fuente-principal: "Arial", sans-serif;
+  --CircleTimeExterno: 0.5s;
+  --offset: 0s;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(rgb(171, 169, 169), rgb(255, 255, 255));
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+section {
+  display: grid;
+  place-content: center;
+  min-height: 50vh;
+  min-width: 100%;
+}
+
+.sharingan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  top: 30%;
+  left: 25%;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 3px solid rgb(146, 5, 5);
+  border-radius: 50%;
+  background: radial-gradient(rgba(0, 0, 0, 0.658), rgba(128, 128, 128, 0.31)),
+    rgb(163, 2, 2);
+  background-blend-mode: lighten;
+  animation: rotation var(--RotationTimeExterno) both infinite linear;
+}
+
+@keyframes scales {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.lineaInterior {
+  border-radius: 50%;
+  border: 3px solid black;
+  width: 70%;
+  height: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.lineaInterior2 {
+  opacity: 0;
+  border-radius: 50%;
+  border: 3px solid black;
+  width: 40%;
+  height: 40%;
+  position: absolute;
+  animation: reveal 1s both 6s normal linear,
+    rotationLineaInterior2 0.8s both infinite linear;
+}
+
+@keyframes rotationLineaInterior2 {
+  to {
+    transform: translate(50%, 50%), rotate(360deg);
+  }
+}
+
+.circulo {
+  border-radius: 50%;
+  background-color: black;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20%;
+}
+
+.circulo2 {
+  border-radius: 50%;
+  background-color: black;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20%;
+}
+
+.triangulo {
+  height: 18px;
+  width: 10px;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+  top: -9px;
+  left: 4px;
+  border-radius: 0% 145% 0% 90%;
+  transform: rotateZ(60deg) skewY(30deg);
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.circulo:nth-child(1) {
+  opacity: 0;
+  transform: rotate(-30deg);
+  animation: reveal calc(var(--CircleTimeExterno)*1) both normal
+    linear;
+}
+
+.circulo:nth-child(2) {
+  opacity: 0;
+  left: 130px;
+  top: 40px;
+  transform: rotate(80deg);
+  animation: reveal calc(var(--CircleTimeExterno)*2) both 1s normal linear;
+}
+
+.circulo:nth-child(3) {
+  opacity: 0;
+  left: 50px;
+  top: 130px;
+  transform: rotate(180deg);
+  animation: reveal calc(var(--CircleTimeExterno)*3) both 2s normal linear;
+}
+
+.iris {
+  width: 25%;
+  height: 25%;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: animationIris 2s both 5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes animationIris {
+  0% {
+    transform: translate(-50%, -50%) scale(2);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+}
+
+.circulo2:nth-child(1) {
+  left: -1px;
+  top: 55px;
+  opacity: 0;
+  transform: rotate(-90deg);
+  animation: reveal 0.8s both 6s normal linear;
+}
+
+.circulo2:nth-child(2) {
+  left: -1px;
+  top: 60px;
+  opacity: 1;
+  transform: rotate(-130deg);
+  animation: reveal 0.8s both 6s normal linear;
+}
+.circulo2:nth-child(3) {
+  left: -1px;
+  top: 60px;
+  opacity: 1;
+  transform: rotate(-130deg);
+  animation: reveal 0.8s both 6s normal linear;
+}
+
+.triangulo2 {
+  height: 18px;
+  width: 10px;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+  top: -9px;
+  left: 4px;
+  border-radius: 0% 145% 0% 90%;
+  transform: rotateZ(60deg) skewY(30deg);
+}
+
+.circulo2:nth-child(3) {
+  opacity: 0;
+  left: 65px;
+  top: 35px;
+  transform: rotate(110deg);
+  /* animation: reveal 1s both 2s normal linear; */
+}
