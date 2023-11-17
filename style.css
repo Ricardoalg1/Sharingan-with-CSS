@@ -1,12 +1,15 @@
 :root {
-  --RotationTimeExterno: 1s;
+  --RotationTimeExterno: 1.5s;
   --RotationTimeInterno: calc(var(--RotationTimeExterno) / 2);
   --fuente-principal: "Arial", sans-serif;
-  --CircleTimeExterno: 0.5s;
+  --CircleTimeExterno: 0.8s;
   --offset: 0s;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
   background: linear-gradient(rgb(171, 169, 169), rgb(255, 255, 255));
@@ -15,20 +18,60 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-section {
-  display: grid;
-  place-content: center;
-  min-height: 50vh;
-  min-width: 100%;
-}
-
-.sharingan {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
-  top: 30%;
-  left: 25%;
+  flex-direction: column;
+}
+
+.title h3 {
+  background: linear-gradient(
+    to right,
+    #b42d2d 0%,
+    rgb(252, 81, 81) 50%,
+    #b52d2d 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.title a,
+span {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: rgb(29, 29, 29);
+  text-shadow: 0 0 10px rgba(228, 228, 228, 0.769);
+}
+
+.title {
+  text-wrap: nowrap;
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.sharingan {
+  box-shadow: 0 0 10px rgb(255, 247, 247);
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 35%;
   position: absolute;
   width: 200px;
   height: 200px;
@@ -36,8 +79,32 @@ section {
   border-radius: 50%;
   background: radial-gradient(rgba(0, 0, 0, 0.658), rgba(128, 128, 128, 0.31)),
     rgb(163, 2, 2);
-  background-blend-mode: lighten;
-  animation: rotation var(--RotationTimeExterno) both infinite linear;
+  background-blend-mode: screen;
+  animation: rotation var(--RotationTimeExterno) both infinite
+      cubic-bezier(0.075, 0.82, 0.165, 1),
+    cubic-bezier(0.01, 0.97, 0.97, 0.04), redBlood both 1s 3s linear;
+}
+
+@keyframes rotationInfinite {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes BlackBlood {
+  to {
+    background-color: rgb(0, 0, 0);
+    background-blend-mode: darken;
+  }
+}
+
+@keyframes redBlood {
+  to {
+    background-color: rgb(255, 0, 0) (255, 0, 0);
+  }
 }
 
 @keyframes scales {
@@ -76,8 +143,8 @@ section {
   width: 40%;
   height: 40%;
   position: absolute;
-  animation: reveal 1s both 6s normal linear,
-    rotationLineaInterior2 0.8s both infinite linear;
+  animation: reveal 1s both 4s normal linear,
+    rotationLineaInterior2 0.8s both 2s infinite linear;
 }
 
 @keyframes rotationLineaInterior2 {
@@ -127,8 +194,7 @@ section {
 .circulo:nth-child(1) {
   opacity: 0;
   transform: rotate(-30deg);
-  animation: reveal calc(var(--CircleTimeExterno)*1) both normal
-    linear;
+  animation: reveal 1s both normal linear;
 }
 
 .circulo:nth-child(2) {
@@ -136,7 +202,7 @@ section {
   left: 130px;
   top: 40px;
   transform: rotate(80deg);
-  animation: reveal calc(var(--CircleTimeExterno)*2) both 1s normal linear;
+  animation: reveal 1s both 1.5s normal linear;
 }
 
 .circulo:nth-child(3) {
@@ -144,7 +210,7 @@ section {
   left: 50px;
   top: 130px;
   transform: rotate(180deg);
-  animation: reveal calc(var(--CircleTimeExterno)*3) both 2s normal linear;
+  animation: reveal 1s both 3s normal linear;
 }
 
 .iris {
@@ -156,7 +222,7 @@ section {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: animationIris 2s both 5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation: animationIris 1s both 3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 @keyframes animationIris {
@@ -178,7 +244,7 @@ section {
   top: 55px;
   opacity: 0;
   transform: rotate(-90deg);
-  animation: reveal 0.8s both 6s normal linear;
+  animation: reveal 0.8s both 5s normal linear;
 }
 
 .circulo2:nth-child(2) {
@@ -186,14 +252,14 @@ section {
   top: 60px;
   opacity: 1;
   transform: rotate(-130deg);
-  animation: reveal 0.8s both 6s normal linear;
+  animation: reveal 0.8s both 5s normal linear;
 }
 .circulo2:nth-child(3) {
   left: -1px;
   top: 60px;
   opacity: 1;
   transform: rotate(-130deg);
-  animation: reveal 0.8s both 6s normal linear;
+  animation: reveal 0.8s both 5s normal linear;
 }
 
 .triangulo2 {
@@ -213,4 +279,10 @@ section {
   top: 35px;
   transform: rotate(110deg);
   /* animation: reveal 1s both 2s normal linear; */
+}
+
+.footer {
+  text-align: center;
+  width: 100%;
+  min-height: 5vh;
 }
